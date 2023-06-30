@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class PageEntry implements Comparable<PageEntry> {
-    private  String pdfName;
-    private  int page;
-    private  int count;
+    private String pdfName;
+    private int page;
+    private int count;
 
     public PageEntry(String pdfName, int page, int count) {
         this.pdfName = pdfName;
@@ -27,8 +27,8 @@ public class PageEntry implements Comparable<PageEntry> {
     @Override
     public String toString() {
         return "\nPageEntry {\n " +
-                "название pdf = '" + pdfName + '\'' +
-                ",\n страниц = " + page +
+                "pdf Name = '" + pdfName + '\'' +
+                ",\n page = " + page +
                 ",\n count = " + count +
                 "\n}";
     }

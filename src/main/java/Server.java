@@ -57,7 +57,7 @@ public class Server {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Ошибка сервера!");
+            System.out.println("Не могу стартовать сервер");
             e.printStackTrace();
         }
     }
