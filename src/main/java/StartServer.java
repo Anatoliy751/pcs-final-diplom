@@ -9,23 +9,6 @@ import java.net.Socket;
 import java.util.List;
 
 public class StartServer {
-
-    static class Request {
-
-        public String word;
-
-        public Request(String word) {
-            this.word = word;
-        }
-
-        @Override
-        public String toString() {
-            return "Запрос { " +
-                    "Слово = '" + word + '\'' +
-                    " } ";
-        }
-    }
-
     private final int port;
     private final BooleanSearchEngine engine;
 
@@ -45,15 +28,8 @@ public class StartServer {
                 ) {
                     System.out.println("Новое подключение!");
                     System.out.println("Клиент: " + clientSocket.getInetAddress() + " , порт: " + clientSocket.getPort());
-                    String json = in.readLine();
-                    Request r = new Gson().fromJson(json, Request.class);
-
-                    if (r.word != null && !r.word.isEmpty()) {
-                        List<PageEntry> result = this.engine.search(r.word);
-                        System.out.println(listToJson(result));
-                        out.println(listToJson(result));
-                    }
-
+                    String word = in.readLine();
+                    List<PageEntry> result = this.engine.search(word);
                 }
             }
         } catch (IOException e) {
