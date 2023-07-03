@@ -1,9 +1,9 @@
 import java.util.Objects;
 
 public class PageEntry implements Comparable<PageEntry> {
-    private String pdfName;
-    private int page;
-    private int count;
+    private final String pdfName;
+    private final int page;
+    private final int count;
 
     public PageEntry(String pdfName, int page, int count) {
         this.pdfName = pdfName;

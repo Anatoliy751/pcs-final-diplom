@@ -8,13 +8,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
-public class Server {
+public class StartServer {
 
-    static class Server1 {
+    static class Request {
 
         public String word;
 
-        public Server1(String word) {
+        public Request(String word) {
             this.word = word;
         }
 
@@ -29,7 +29,7 @@ public class Server {
     private final int port;
     private final BooleanSearchEngine engine;
 
-    public Server(int port) throws IOException {
+    public StartServer(int port) throws IOException {
         this.port = port;
         engine = new BooleanSearchEngine(new File("pdfs"));
     }
@@ -46,7 +46,7 @@ public class Server {
                     System.out.println("Новое подключение!");
                     System.out.println("Клиент: " + clientSocket.getInetAddress() + " , порт: " + clientSocket.getPort());
                     String json = in.readLine();
-                    Server1 r = new Gson().fromJson(json, Server1.class);
+                    Request r = new Gson().fromJson(json, Request.class);
 
                     if (r.word != null && !r.word.isEmpty()) {
                         List<PageEntry> result = this.engine.search(r.word);

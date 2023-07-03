@@ -5,8 +5,8 @@ public class Main {
         BooleanSearchEngine engine = new BooleanSearchEngine(new File("pdfs"));
         System.out.println(engine.search("бизнес"));
 
-        Server searchServer = new Server(8989);
-        searchServer.start();
+        StartServer startServer = new StartServer(8989);
+        startServer.start();
     }
 
 }
