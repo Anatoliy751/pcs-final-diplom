@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,18 +19,18 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         try (
+                Socket clientSocket = new Socket("localhost", port);
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"), true);
 
-                Socket socket = new Socket("localhost", port);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
-                Scanner scan = new Scanner(System.in, "UTF-8");
 
         ) {
-            System.out.println("Подключаемся к" + port);
-            System.out.println("[Запрос]:");
-            String line = scan.nextLine();
-            out.println("{\"word\": \"DevOps\"}");
-            System.out.println();
+            String resp = in.readLine();
+            System.out.println(resp);
+            Scanner sc = new Scanner(System.in);
+            String word = sc.nextLine();
+            resp = in.readLine();
+            System.out.println(resp);
         }
     }
 
@@ -57,4 +58,5 @@ public class Client {
         }
         return list;
     }
+
 }
