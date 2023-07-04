@@ -22,15 +22,12 @@ public class Client {
                 Socket clientSocket = new Socket("localhost", port);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"), true);
-
-
         ) {
             String resp = in.readLine();
             System.out.println(resp);
-            Scanner sc = new Scanner(System.in);
-            String word = sc.nextLine();
             resp = in.readLine();
             System.out.println(resp);
+            out.println("бизнес");
         }
     }
 
@@ -58,5 +55,4 @@ public class Client {
         }
         return list;
     }
-
 }
