@@ -34,10 +34,9 @@ public class Main {
                             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
                     ) {
-                        out.println("Новое подключение");
-                        out.println("Адрес клиента: " + clientSocket.getInetAddress() + " , port: " + clientSocket.getPort());
                         String word = in.readLine();
-                        List<PageEntry> result = this.engine.search(word);
+                        List<PageEntry> hyt = this.engine.search(word);
+                        out.println(hyt);
                     }
                 }
             } catch (IOException e) {
