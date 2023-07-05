@@ -23,11 +23,9 @@ public class Client {
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"), true);
         ) {
+            out.println("бизнес");
             String resp = in.readLine();
             System.out.println(resp);
-            resp = in.readLine();
-            System.out.println(resp);
-            out.println("бизнес");
         }
     }
 

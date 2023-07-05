@@ -34,13 +34,11 @@ public class Main {
                             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
                     ) {
-                        System.out.println("Подключен клиент");
                         String word = in.readLine();
-                        System.out.println("Клиент отправил сообщение" + word);
                         List<PageEntry> hyt = this.engine.search(word);
                         String res = new GsonBuilder().create().toJson(hyt);
                         out.println(res);
-                        out.println("клиенту отправлено сообщение" + res);
+
                     }
                 }
             } catch (IOException e) {
