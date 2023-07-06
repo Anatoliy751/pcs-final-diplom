@@ -42,6 +42,9 @@ public class BooleanSearchEngine implements SearchEngine {
                         words.computeIfAbsent(wordToLowerCase, k -> new ArrayList<>()).add(new PageEntry(pdf.getName(), i + 1, count));
                     }
                 }
+                for (String word : words.keySet()) {
+                    words.get(word).sort(PageEntry::compareTo);
+                }
                 freqs.clear();
             }
         }
@@ -53,11 +56,8 @@ public class BooleanSearchEngine implements SearchEngine {
         List<PageEntry> result = new ArrayList<>();
         String wordToLowerCase = word.toLowerCase();
         if (words.get(wordToLowerCase) != null) {
-            for (PageEntry pageEntry : words.get(wordToLowerCase)) {
-                result.add(pageEntry);
-            }
+            result.addAll(words.get(wordToLowerCase));
         }
-        Collections.sort(result);
         return result;
     }
 
